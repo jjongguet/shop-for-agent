@@ -17,37 +17,44 @@ curl -fsSL -o ~/.claude/skills/shop-for-agent/SKILL.md \
 
 설치 후 이렇게 써본다:
 
-> 올리브영에서 젤 네일 리무버 찾아줘
+> 냉동 딸기 싼 데 찾아줘
 
 ## API
 
-단일 공개 엔드포인트:
+풀 검색(큐레이션된 제휴 링크)과 쿠팡 실검색(운영자 파트너스 키로 즉석 생성):
 
 ```
-GET https://shopforagent.shop/api/pool/search?platform=oliveyoung&keywords=젤 네일 리무버,네일 리무버
+GET https://shopforagent.shop/api/pool/search?keywords=딸기
+GET https://shopforagent.shop/api/coupang/search?keywords=무선청소기
 ```
 
 ```json
 {
   "results": [
     {
-      "platform": "oliveyoung",
-      "product_name": "젤 네일 리무버 500ml",
-      "affiliate_url": "https://...",
-      "added_at": "2026-09-15T10:00:00Z"
+      "platform": "toss",
+      "product_name": "뉴뜨레 냉동 딸기, 국내산, 1kg, 3개",
+      "affiliate_url": "https://toss.im/_m/7x8SVGn8",
+      "added_at": "2026-09-16T00:09:39+09:00"
     }
   ]
 }
 ```
 
 - `keywords` 필수(쉼표 구분), `platform`·`limit` 선택
+- 쿠팡 엔드포인트는 키 등록 전 `503 coupang_not_configured`로 대기 응답 — 응답에 `disclosure`(파트너스 수수료 고지) 포함
 - 결과 없으면 `"results": []` — 위조 링크 없음
 - `GET /healthz` 생존 확인
 - 레이트 리밋: IP당 시간당 60요청
 
 ## 지원 플랫폼
 
-풀에 등록된 플랫폼(2026-09 출발: 올리브영). 풀은 운영자가 큐레이션하며 계속 확장된다.
+- **toss** (토스쇼핑 쉐어링크 · 수수료 10%) — 라이브, 2026-09-16 시드
+- **coupang** (쿠팡 파트너스 실검색) — 서버 키 등록 대기
+- **oliveyoung** (쇼핑 큐레이터 · 최대 7%) — 가입 심사 대기
+- **linkprice 다몰** (이마트몰·G마켓·롯데온·하이마트·오늘의집·11번가·알리익스프레스) — 광고주 승인 대기
+
+풀은 운영자가 큐레이션하며 계속 확장된다.
 
 ## 공시
 
