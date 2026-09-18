@@ -31,6 +31,17 @@ curl -s -G "https://shopforagent.shop/api/coupang/search" \
 - `disclosure` 필드가 있으면 링크 안내에 그 문구를 함께 전달한다(파트너스 수수료 고지).
 - `503 coupang_not_configured`면 "쿠팡 연동 대기 중"이라고 답한다 — 다른 링크를 지어내지 않는다.
 
+급상승 핫딜 조회(커뮤니티 반응 지표 기반 — 운영자 수집 DB):
+
+```sh
+curl -s -G "https://shopforagent.shop/api/hotdeal/top" \
+  --data-urlencode "hours=2" --data-urlencode "limit=20"
+```
+
+- 최근 N시간(기본 2, 상한 24)에 처음 관측되어 댓글·조회수가 오르는 딜 목록이다.
+- "요즘 뜨는 게 뭐야"류 질문에 `deals[].title`·`url`(커뮤니티 게시글 원문)로 답한다.
+- 이 링크는 제휴 링크가 아닌 커뮤니티 원문 링크다 — 원문 그대로 전달한다.
+
 응답 예(실측, 2026-09-16):
 
 ```json
