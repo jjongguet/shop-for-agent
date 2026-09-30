@@ -1,0 +1,7 @@
+{
+  "standard_version": "1.0.1",
+  "profiles": ["skill"],
+  "roots": { "skill": "." },
+  "ledger_tables": [],
+  "missing_threshold": null
+}

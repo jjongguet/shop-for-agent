@@ -1,0 +1,3 @@
+# agent runtime + local data — never publish (워크스페이스 표준: shopscan/factory/whosbuying와 동일)
+.gjc/
+artifacts/
