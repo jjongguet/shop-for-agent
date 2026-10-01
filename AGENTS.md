@@ -18,6 +18,6 @@
 
 - **프로필**: `standard.json` — profiles `[skill]`, roots `.`. 검증: `node ../workspace-standard/validator/cli.mjs validate --root .` → green 필수.
 - **대시보드** (`dashboard/`): 로컬 운영 뷰 — 레포 태그·dashboard package.json 버전을 빌드 시점에 읽어 정적 표시. **Supabase 미연결(보류 — Addendum 1)** — 봉투 열람 영역은 미연결 표시, push-envelope 없음.
-- **검증기 훅**: `dashboard/package.json` `vercel-build`가 `next build` 전에 검증기(`validate --root ..`)를 선결합 — green 아니면 빌드 실패.
+- **검증기**: 로컬 전용 — `dashboard/`에서 `npm run validate`로 실행한다. 호스팅 빌드 서버엔 정본이 없어 `vercel-build`에는 넣지 않는다; 호스팅 빌드는 `vercel-build`(`next build`)가 담당한다.
 - **steps.json 수동 절**: ①버전 기록(mac — 릴리스 태그 시점) ②검증(server — validator green) ③판정(human). 타이머 자동 실행 없음.
 - 스킬 노출 API는 풀 검색·쿠팡 실검색 두 가지 — `/api/hotdeal/top`(급상승 핫딜) 절은 f29로 SKILL.md에서 제거됐다. 서버 측 엔드포인트 운영은 shopscan 몫.
